@@ -2,6 +2,7 @@ const assert = require('assert');
 Object.freeze(assert);
 const sumOfOther = require('./sumOfOther/sumOfOther.js');
 const make = require('./make/make.js');
+const recursion = require('./recursion/recursion.js');
 
 describe('sumOfOther', () => {
   it('1', () => {
@@ -42,7 +43,22 @@ describe('make', () => {
   it('3', () => {
     assert.strictEqual(make(1)(2)(3)(sum), 6);
   });
+
   it('4', () => {
     assert.strictEqual(make(10)(20)(60, 32)(1)(sum), 123);
+  });
+});
+
+const firstTree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+const secontTree = {"value":50,"left":{"value":40,"left":{"value":10}}};
+describe('recursion', () => {
+  it('1', () => {
+    const resultRecursion = recursion(firstTree);
+    assert.deepEqual(resultRecursion, [[100], [90, 120], [70, 99, 110, 130]]);
+  });
+
+  it('2', () => {
+    const resultRecursion = recursion(secontTree);
+    assert.deepEqual(resultRecursion, [[50], [40], [10]]);
   });
 });
